@@ -1,0 +1,4 @@
+include sidtools/script.sh
+include sidtools/01_submit.py
+include sidtools/src
+

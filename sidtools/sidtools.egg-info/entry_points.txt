@@ -1,0 +1,3 @@
+[console_scripts]
+s_make = sidtools.cli:s_make_main
+s_run = sidtools.cli:s_run_main
