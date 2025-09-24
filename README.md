@@ -112,7 +112,6 @@ s_make -T <input_file> --base <output_dir> [options]
 - `-F, --files`: Files/folders to copy (default: `01_submit.py script.sh src`)
 
 **Options:**
-- `--dry-run`: Preview operations without executing
 - `--verbose, -v`: Enable verbose logging
 - `--overwrite`: Overwrite existing directories
 
@@ -127,8 +126,6 @@ s_make -T trajs.xyz --base run_dir -F script.sh input.in src/
 # Overwrite existing directories
 s_make -T trajs.xyz --base run_dir --overwrite
 
-# Preview operations
-s_make -T trajs.xyz --base run_dir --dry-run --verbose
 ```
 
 ### s_run - Submit Jobs
@@ -144,7 +141,6 @@ s_run --base <directory> [options]
 
 **Options:**
 - `--pattern`: Script filename pattern (default: `script.sh`)
-- `--dry-run`: Preview operations without executing
 - `--verbose, -v`: Enable verbose logging
 
 **Examples:**
@@ -155,8 +151,6 @@ s_run --base run_dir
 # Use different script pattern
 s_run --base run_dir --pattern run.sh
 
-# Preview submissions
-s_run --base run_dir --dry-run --verbose
 ```
 
 ### s_store - Collect Results
@@ -177,7 +171,6 @@ s_store --base <directory> --db <output.db> [options]
 - `--filename`: VASP output filename (default: `vasprun.xml`)
 - `--stride`: For MD: process every Nth frame (default: 1)
 - `--max-frames`: For MD: maximum frames to process
-- `--dry-run`: Preview operations without executing
 - `--verbose, -v`: Enable verbose logging
 
 **Examples:**
@@ -191,8 +184,6 @@ s_store --base run_dir --db md.db --type md --stride 5 --max-frames 100
 # Use custom subfolder
 s_store --base run_dir --db results.db --type opt --subfolder my_calc
 
-# Preview collection
-s_store --base run_dir --db results.db --type opt --dry-run
 ```
 
 ### s_gpumd - GPUMD Simulations
@@ -212,7 +203,6 @@ s_gpumd --base <directory> --db <input_file> [options]
 - `--min`: Minimum trajectory index (default: 1)
 - `--max`: Maximum trajectory index (default: all configs)
 - `--overwrite`: Overwrite existing directories
-- `--dry-run`: Preview operations without executing
 - `--verbose, -v`: Enable verbose logging
 
 **Examples:**
@@ -226,8 +216,6 @@ s_gpumd --base gpumd_out --db structures.db --min 10 --max 50 --input run.sh mod
 # Overwrite existing directories
 s_gpumd --base gpumd_out --db structures.db --overwrite
 
-# Preview operations
-s_gpumd --base gpumd_out --db structures.db --dry-run --verbose
 ```
 
 ## File Structure
@@ -262,7 +250,6 @@ base_directory/
 - Check if you're on a system with Slurm scheduler
 
 **2. "File not found" errors**
-- Use `--dry-run` to preview operations
 - Check file paths and permissions
 - Use `--verbose` for detailed logging
 
@@ -286,44 +273,6 @@ s_store --base out --db results.db --verbose
 s_gpumd --base out --db input.db --verbose
 ```
 
-### Dry Run Mode
-
-Preview operations without executing:
-
-```bash
-# Preview trajectory splitting
-s_make -T input.xyz --base out --dry-run
-
-# Preview job submissions
-s_run --base out --dry-run
-
-# Preview result collection
-s_store --base out --db results.db --dry-run
-
-# Preview GPUMD setup
-s_gpumd --base out --db input.db --dry-run
-```
-
-## Development
-
-### Install Development Dependencies
-
-```bash
-pip install -e ".[dev]"
-```
-
-### Run Tests
-
-```bash
-pytest
-```
-
-### Code Formatting
-
-```bash
-black sidtools/
-flake8 sidtools/
-```
 
 ## License
 
