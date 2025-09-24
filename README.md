@@ -26,7 +26,7 @@ A Python package for processing and organizing ASE trajectory files with utiliti
 pip install sidtools
 
 # Or install from source
-git clone <repository-url>
+git clone https://github.com/Sonti974948/SIDTools.git
 cd sidtools
 pip install -e .
 ```
@@ -48,8 +48,6 @@ s_make -T input.xyz --base output_dir -F script.sh src/
 # Split a database file
 s_make -T structures.db --base output_dir -F script.sh src/
 
-# Preview what would be done (dry run)
-s_make -T input.xyz --base output_dir --dry-run
 ```
 
 This creates:
@@ -75,8 +73,6 @@ s_run --base output_dir
 # Use a different script pattern
 s_run --base output_dir --pattern run.sh
 
-# Preview job submissions
-s_run --base output_dir --dry-run
 ```
 
 ### 3. Collect Results
@@ -88,8 +84,6 @@ s_store --base output_dir --db results.db --type opt
 # Collect MD trajectories with stride
 s_store --base output_dir --db md_results.db --type md --stride 10 --max-frames 100
 
-# Preview collection
-s_store --base output_dir --db results.db --type opt --dry-run
 ```
 
 ### 4. Prepare GPUMD Simulations
